@@ -1,0 +1,58 @@
+<!-- partial veiw çağır -->
+<%- include("partials/header")  %>
+
+<form method="post" action="/login">
+    <h2>Kullanici Girisi</h2>
+    <label for="email">Email</label>
+    <input type="text" name="email" required/>
+    <div class="email error"></div>
+    <label for="password">Parola</label>
+    <input type="password" name="password" required/>
+    <div class="password error"></div>
+    <button type="submit">Giris Yap</button>
+</form>
+
+
+<!-- partial veiw çağır -->
+<%- include("partials/footer")  %>
+
+<script>
+    const form = document.querySelector("form");
+    //validation erroları yazdırmak için error divlere eriş
+    const emailError = document.querySelector(".email.error");
+    const passwordError = document.querySelector(".password.error");
+
+    form.addEventListener("submit", async (e) => {
+        //eğer hata gelirse hata mesajlarını boşaltmalıyız ki divlerin içinde hatalar kalmasın öyle.
+        emailError.textContent = "";
+        passwordError.textContent = "";
+
+        //submit olayı gerceklestiginde sayfanın yenilenmesini engelle.
+        e.preventDefault();
+        //inputlara eris
+        const email = form.email.value;
+        const parola = form.password.value;
+        //fetch ile ilgili endpointe istek atıp req.body bilgisine erişcez.
+        //body içerisine json türünde kullanıcının inputa girdiği bu bilgileri yazdılarım bu sayede controllerdaki req.bodyi burda bu bilgilerle doldurmuş oluyoruz aslında. Yani aslında burda postmanin body kısmında yaptıkğımız işlemi yazarak yapmış oluyoruz.
+        //sonrasında geriye response dönecek bu dönen responsa göre hareket edebiliriz.
+        try{
+            const res = await fetch("/login",{
+                method:"POST",
+                body:JSON.stringify({email,parola}),
+                headers:{"Content-Type":"application/json"}
+            });
+            //hataları controller tarafında catch durumunda .json({errors} diyerek geri dönderdiğimizden dolayı bu hataları burda yakalayabiliriz.
+            const data = await res.json();
+            if(data.errors){
+                emailError.textContent = data.errors.email;
+                passwordError.textContent = data.errors.parola;
+            }
+            //kayıt işlemi başarılı olup data bilgisi doluyorsa bir sayfa yönlendirmesi yapalım kullanıcı oluşunca sayfadan yönlenmeli.
+            if(data.user){
+                location.assign("/");
+            }
+        }catch(error){
+            console.log(error);
+        }
+    });
+</script>

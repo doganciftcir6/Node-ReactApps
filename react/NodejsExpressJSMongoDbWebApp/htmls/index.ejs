@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+     <!-- partial view çağırma head -->
+    <%-include("./partials/head.ejs")%>
+<body>
+   <!-- partial view çağırma nav-->
+   <%-include("./partials/nav.ejs")%>
+    <div class="dersler content">
+        <h2>Butun Dersler</h2>
+        <!-- app.jsten gönderdiğimiz verileri dinamik bir şekilde yakalayalım cshtml mantığı-->
+        <% if(dersler.length > 0){ %>
+            <!-- derslere link vererek tıklanabilir yapalım ve id özelliği ile tıklanan dersin detay sayfasına geçelim. -->
+            <% dersler.forEach(ders=>{ %>
+                <a class="tekil" href="/dersler/<%= ders._id %>">
+                 <h3 class="baslik"><%= ders.baslik%></h3>
+                 <p class="icerik"><%= ders.icerik%></p>
+                </a> 
+            <% }) %>
+        <% }else {%>
+            <p>Henuz hic ders eklenmedi</p>
+            <% } %>
+    </div>
+
+</body>
+</html>

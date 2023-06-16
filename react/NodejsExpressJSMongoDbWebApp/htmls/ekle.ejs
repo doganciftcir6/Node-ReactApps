@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+ <!-- partial view çağırma head -->
+ <%-include("./partials/head.ejs")%>
+<body>
+      <!-- partial view çağırma nav-->
+      <%-include("./partials/nav.ejs")%>
+    <div class="ders-ekle content">
+        <!-- aynı .netteki gibi form methodunu post yapıyorum submit olduktan sonra /dersler sayfasına yönlendir diyorum ve input verilerimi name özellikleri ile çekiyorum. -->
+        <form method="post" action="/dersler">
+            <label for="baslik">Ders Baslik:</label>
+            <input type="text" id="baslik" name="baslik" required>
+            <label for="icerik">Ders Icerik:</label>
+            <input type="text" id="icerik" name="icerik" required>
+            <button>Kaydet</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- partial veiw çağır -->
+<%- include("partials/header")  %>
+
+<ul class="works">
+    <% if (isler.length>0) { %>
+        <% isler.forEach(is => { %>
+            <li class="work">
+                <img src="/work.png" alt="">
+                <h4><%= is.baslik %></h4>
+            </li>
+        <% }) %>
+    <% } else { %>
+        <div>Henus is girilmedi</div>
+    <% } %>
+</ul>
+
+
+<!-- partial veiw çağır -->
+<%- include("partials/footer")  %>

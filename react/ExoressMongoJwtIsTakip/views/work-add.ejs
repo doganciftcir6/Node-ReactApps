@@ -1,0 +1,51 @@
+<!-- partial veiw çağır -->
+<%- include("partials/header")  %>
+
+<form method="post" action="/work-add">
+    <h2>Is Olustur</h2>
+    <label for="baslik">Baslik</label>
+    <input type="text" name="baslik" required/>
+    <label for="aciklama">Aciklama</label>
+    <input type="text" name="aciklama" required/>
+    <label for="baslama">Baslama Tarihi</label>
+    <input type="date" name="baslama" required/>
+    <label for="bitis">Bitis Tarihi</label>
+    <input type="date" name="bitis" required/>
+    <button type="submit">Giris Yap</button>
+</form>
+
+
+<!-- partial veiw çağır -->
+<%- include("partials/footer")  %>
+
+<script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", async (e) => {
+        //submit olayı gerceklestiginde sayfanın yenilenmesini engelle.
+        e.preventDefault();
+
+        //inputlara eris
+        const baslik = form.baslik.value;
+        const aciklama = form.aciklama.value;
+        const baslama = form.baslama.value;
+        const bitis = form.bitis.value;
+
+        try{
+            //inputlardaki kullanıcının girdigi verileri workControllerdaki work-add post endpointine req.body olarak gönderiyorum. İstek atıyorum yani bu bilgilerle endpointe fetch metodu sayesinde.
+            const res = await fetch("/work-add",{
+                method:"POST",
+                body:JSON.stringify({baslik,aciklama,baslama,bitis}),
+                headers:{"Content-Type":"application/json"}
+            });
+            //bunun içine endpointten dönen response düşecek. Bu cevabın ismini work olarak vermiştik controllerda
+            const data = await res.json();
+            //kayıt işlemi başarılı olup data bilgisi doluyorsa bir sayfa yönlendirmesi yapalım kayıt oluşunca ekleme sayfasından yönlenmeli.
+            if(data.work){
+                location.assign("/works");
+            }
+        }catch(error){
+            console.log(error);
+        }
+    });
+</script>

@@ -1,0 +1,22 @@
+{
+  "parsoneller": [
+    {
+      "id": "2",
+      "isim": "Dogan",
+      "yas": 30,
+      "email": "osman@gmail.com"
+    },
+    {
+      "id": "3",
+      "isim": "Esra",
+      "yas": 30,
+      "email": "esra@gmail.com"
+    },
+    {
+      "isim": "Tufan",
+      "email": "tufan@gmail.com",
+      "yas": 10,
+      "id": "FJckLil"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+body{
+  background: #63cdda;
+}
+
+.App{
+  background: #22a6b3;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 700px;
+  color: #eee;
+}
+
+.navbar{
+  padding: 10px 20px;
+  text-align: center;
+  background: #e77f87;
+}
+
+.navbar h1{
+  margin: 10px 0;
+}
+
+.book-list{
+  margin: 20px;
+}
+
+.book-list ul{
+  padding: 0;
+  list-style-type: none;
+}
+
+.book-list li{
+  background: #cf6a87;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.book-list li:hover{
+  opacity: 0.7;
+  text-decoration: line-through;
+}
+
+.book-list .title{
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.book-list .author{
+  font-size: 0.9em;
+  color: #ddd;
+}
+
+.empty{
+  margin: 20px;
+  text-align: center;
+  color: #aa0000;
+}
+
+form{
+  padding: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 6px 0;
+  background: #ea8685;
+  color: #fff;
+  border:0;
+}
+
+input[type="submit"]{
+  margin: 10px auto;
+  background: #eee;
+  border-radius: 2px;
+  padding: 6px 20px;
+  display: block;
+}
+
+input[type="submit"]:hover{
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+

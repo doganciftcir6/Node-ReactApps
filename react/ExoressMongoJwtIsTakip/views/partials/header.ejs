@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <nav>
+        <a href="/">Is Takip Uygulamasi</a>
+        <ul>
+            <% if (user) { %>
+                <li>Hosgeldin, <%= user.email.split("@")[0] %></li>
+                <li><a href="/logout">Cikis</a></li>
+                <% } else { %>
+                <li><a href="/login">Giris Yap</a></li>
+                <li><a href="/signup">Kayit Ol</a></li>
+            <% } %>
+        </ul>
+    </nav>

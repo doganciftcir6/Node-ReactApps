@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <button>Ekle</button>
+    <button class="sil">Sil</button>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase yapılandırma bilgilerini burada güncelleyin
+        var firebaseConfig = {
+        apiKey: "AIzaSyCUhkdC5tqRRYDiUBxRRBI6wzQBdtiWN4I",
+        authDomain: "modern-js-ae75f.firebaseapp.com",
+        projectId: "modern-js-ae75f",
+        torageBucket: "modern-js-ae75f.appspot.com",
+        messagingSenderId: "992920399953",
+        appId: "1:992920399953:web:77e236c4a71cbf7a0b8870"
+        };
+      
+        // Firebase'i başlat
+        firebase.initializeApp(firebaseConfig);
+      
+        // Firestore veritabanı referansını al
+        var db = firebase.firestore();
+      </script>
+      <script src="FireStoreIslemleri.js"></script>
+      
+</body>
+</html>

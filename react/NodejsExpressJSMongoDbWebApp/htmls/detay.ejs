@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+   <!-- partial view çağırma head -->
+   <%-include("./partials/head.ejs")%>
+<body>
+    <!-- partial view çağırma nav-->
+    <%-include("./partials/nav.ejs")%>
+    <div class="detay content">
+        <h2><%= ders.baslik %></h2>
+        <div class="content">
+            <p><%= ders.icerik %></p>
+            <hr>
+            <p>Olusturulma Tarihi <%= ders.createdAt %></p>
+        </div>
+        <!-- data-doc diyerek dersin silinecek olan idsini burda tutuyorum -->
+        <a class="sil" data-doc="<%= ders._id %>">Sil</a>
+    </div>
+    <script>
+        //silme işlemi için buyonu etkinleştiricez
+        //butona click olduğunda fetch sayesinde app.js tarafındaki DELETE metotu çalıştırılacak.
+        const silButon = document.querySelector("a.sil");
+        silButon.addEventListener("click",(e) => {
+            //silme işlemi gerçekleştirmek için bir API endpointi tanımla. Bu url saayesinde app.jsteji delete metoduna ulaşırız. dataset.doc ise ilgili kaydın ilgili idsini tutar.
+            const endpoint = `/dersler/${silButon.dataset.doc}`;
+            //fetch ile bu endpointe DELETE isteği yapılır. Bu Express.js kodumdaki DELETE metotunu tetikler.
+            fetch(endpoint, {
+                method:"DELETE"
+                //ilk then işlemi gelen yanıtı json formata dönüştürür.
+            }).then((response) => response.json())
+            //diğer then jsona dönüşmüş veriyi alır  data.redirect özelliğine erişir. Bu özellik, Express.js tarafındaki silme işleminin gerçekleştirildikten sonra yönlendirme yapılacak URL'yi içerir yani o tarafta verdiğimiz redirect bilgisi buraya düşüyor. Bu URL'ye sayfanın yeniden yönlendirilmesi sağlanır.
+            .then(data => window.location.href= data.redirect)
+            //Kodun sonunda, herhangi bir hata durumunda hata mesajını konsola yazdırırız.
+            .catch((err) => console.log(err));
+        });
+    </script>
+</body>
+</html>
